@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', ['uses' => 'WisataController@intro']);
+Route::get('/', ['uses' => 'WisataController@intro', 'middleware' => 'guest']);
 
 Auth::routes();
 
@@ -20,5 +20,6 @@ Route::get('/wisata/{id}', ['uses' => 'WisataController@wisata', 'as' => 'wisata
 Route::post('/search', ['uses' => 'WisataController@cari', 'as' => 'search']);
 Route::post('/wisata', ['uses' => 'WisataController@commentWisata', 'as' => 'wisata.comment']);
 Route::post('/wisata/hapusKomen', ['uses' => 'WisataController@hapusComment', 'as' => 'wisata.hapusKomen']);
+Route::get('/admin', ['uses' => 'AdminController@index', 'as' => 'admin']);
 
 Route::get('/home', 'HomeController@index')->name('home');
