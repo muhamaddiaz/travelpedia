@@ -1,35 +1,39 @@
 @extends('layouts.app')
 
-@section('title', "Pencarian untuk {{$search}}")
+@section('title', "Pencarian untuk $search")
 
 @section('content')
     <div class="bg-bromo" style="padding: 0">
         <div class="faded-search text-white">
-            <br>
+            <br><br>
             <h1 class="display-3" style="font-weight: 900">Hasil untuk {{$search}}</h1>
+            @if($wisata_count->hitung)
+                <h3>Terdapat {{$wisata_count->hitung}} lokasi wisata di daerah {{$search}}</h3>
+            @endif
         </div>
     </div>
     <br>
     <div class="container">
         @if($wisata)
-            @foreach($wisata as $wis)
-            <div class='card'>
-                <div class='card-body'>
-                    <div class='row'>
-                        <div class='col-md-4'>
-                            <img src="{{$wis->link_image}}" style="width: 100%" />
+            <div class="row">
+                @foreach($wisata as $ws)
+                    <div class="col-md-4">
+                        <div class='card'>
+                            <object data="{{$ws->link_image}}" type="image/png" style='width:100%' class="card-img-top">
+                                <img src="{{asset('images/bromo.jpg')}}" style='width:100%' class="card-img-top"/>
+                            </object>
+                            <div class='card-body'>       
+                                <h2 class=card-title>{{$ws->nama_wisata}}</h2>
+                                <p class="card-text">{{$ws->lokasi_wisata}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{{route('wisata', ['id' => $ws->id_wisata])}}" class="btn btn-info btn-block">Selengkapnya</a>
+                            </div>
                         </div>
-                        <div class='col-md-8'>
-                            <h2 class=card-title>{{$wis->nama_wisata}}</h2>
-                            <p class=card-text>{{$wis->deskripsi_wisata}}</p>
-                        </div>
+                        <br>
                     </div>
-                </div>
-                <div class='card-footer'>
-                    <a href="wisata/{{$wis->id_wisata}}" class="btn btn-info btn-block">Selengkapnya</a>
-                </div>
-            </div><br>
-            @endforeach
+                @endforeach
+            </div>
         @else
             <br><br><h1 class='display-4 text-center' style='font-weight: 600; opacity: .4'>Tidak ada hasil untuk {{$search}}</h1>
         @endif

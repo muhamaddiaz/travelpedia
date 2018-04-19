@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 
 
-class IsLoggedIn
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,10 @@ class IsLoggedIn
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()) {
-            return redirect()->route('home');
-        } 
-        return next($request);
+        if(Auth::user()->admin) {
+            return redirect()->route('admin');
+        }
+        
+        return $next($request);
     }
 }

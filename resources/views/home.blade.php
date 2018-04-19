@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid bg-raja" style="padding: 0">
+<div class="container-fluid bg-bromo" style="padding: 0">
     <div class="faded-main text-center text-white">
         <h1 class="display-2" style="font-weight: 700">Selamat datang, {{Auth::user()->name}}</h1>
         <h3 class="display-4">Mulailah liburan anda</h3>
