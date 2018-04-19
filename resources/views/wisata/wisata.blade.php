@@ -15,7 +15,7 @@
                     <p><i class="fas fa-star"></i> ( 0 ) Belum ada rating<p>
                 @endif
                 @if(Auth::user())
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ulasan">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ulasan">
                         Beri Rating
                     </button>
                     @if($user_rate)

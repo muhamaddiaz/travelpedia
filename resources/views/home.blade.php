@@ -12,7 +12,7 @@
                 <form action="{{route('cari.wisata')}}" method="get">
                     <input type="search" name="search" class="form-control" placeholder="Cari wisata" required/>
                     <br>
-                    <button type="submit" class="btn btn-success">Cari wisata</button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Cari wisata</button>
                 </form>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <br>
-            <button class="btn btn-primary btn-block" type="submit">Search</button>
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-search"></i> Search</button>
         </form>
     </div>
 </div>
