@@ -20,7 +20,9 @@ Route::get('/wisata/{id}', ['uses' => 'WisataController@wisata', 'as' => 'wisata
 Route::post('/wisata/{id}/rate', ['uses' => 'WisataController@rate', 'as' => 'rate.wisata']);
 Route::post('/search', ['uses' => 'WisataController@cari', 'as' => 'search']);
 Route::post('/wisata', ['uses' => 'WisataController@commentWisata', 'as' => 'wisata.comment']);
+Route::post('/wisata/{id}/replykomentar', ['uses' => 'WisataController@replyComment', 'as' => 'reply.comment']);
 Route::post('/wisata/hapusKomen', ['uses' => 'WisataController@hapusComment', 'as' => 'wisata.hapusKomen']);
+Route::post('/wisata/hapusReply', ['uses' => 'WisataController@hapusReply', 'as' => 'wisata.hapusReply']);
 
 Route::get('/admin', ['uses' => 'AdminController@index', 'as' => 'admin']);
 Route::post('/admin/{id}/deleteWisata', ['uses' => 'AdminController@deleteWisata', 'as' => 'admin.deleteWisata']);

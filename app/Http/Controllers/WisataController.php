@@ -86,10 +86,26 @@ class WisataController extends Controller
         return redirect()->route("wisata", ['id' => $id_wisata]);
     }
 
+    public function replyComment(Request $request, $id) {
+        $id_user = $request->id_user;
+        $id_komentar = $id;
+        $id_wisata = $request->id_wisata;
+        $comment = $request->comment;
+        DB::insert("INSERT INTO reply_komentar(id_komentar, id_user, isi_komentar) VALUES(?, ?, ?)", [$id_komentar, $id_user, $comment]);
+        return redirect()->route("wisata", ['id' => $id_wisata]);
+    }
+
     public function hapusComment(Request $request) {
         $id_hapus = $request->id_hapus;
         $id_wisata = $request->id_wisata;
         DB::delete("DELETE FROM komentar WHERE id_komentar=(?)", [$id_hapus]);
+        return redirect()->route("wisata", ['id' => $id_wisata]);
+    }
+
+    public function hapusReply(Request $request) {
+        $id_hapus = $request->id_hapus;
+        $id_wisata = $request->id_wisata;
+        DB::delete("DELETE FROM reply_komentar WHERE id_reply=(?)", [$id_hapus]);
         return redirect()->route("wisata", ['id' => $id_wisata]);
     }
 }

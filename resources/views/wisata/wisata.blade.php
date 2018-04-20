@@ -50,10 +50,46 @@
                                                 <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                             </form>
                                         @endif
+                                        <button data-toggle="collapse" data-target="#reply{{$komen->id_komentar}}" class="btn btn-info"><i class="fas fa-reply"></i></button>
                                     @endif
-                                    <button type="submit" class="btn btn-info"><i class="fas fa-reply"></i></button>
                                 </div>
                             </div>
+                            <?php $replied = DB::select("SELECT * FROM reply_komentar WHERE id_komentar=?", [$komen->id_komentar]) ?>
+                            @if($replied)
+                                @foreach($replied as $rep)
+                                    <?php $rep_user = DB::select("SELECT * FROM users WHERE id=(?)", [$rep->id_user]) ?>
+                                    <br>
+                                    <div class="card ml-5">
+                                        <div class="card-body">{{$rep->isi_komentar}}</div>
+                                        <div class="card-footer">
+                                            <p>Replied by - <?php echo $rep_user[0]->name ?></p>
+                                            @if(Auth::user())
+                                                @if(Auth::user()->id == $rep->id_user)
+                                                    <form action="{{route('wisata.hapusReply')}}" method="post" style="display: inline-block">
+                                                        <input type='hidden' name='_token' value="{{csrf_token()}}" />
+                                                        <input type="hidden" name="id_hapus" value="{{$rep->id_reply}}" />
+                                                        <input type='hidden' name='id_wisata' value="{{$wisata->id_wisata}}" />
+                                                        <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                                    </form>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if(Auth::user())
+                                <div class="collapse" id="reply{{$komen->id_komentar}}">
+                                    <br>
+                                    <form action="{{route('reply.comment', ['id' => $komen->id_komentar])}}" method='post'>
+                                        <input type='hidden' name='_token' value="{{csrf_token()}}" />
+                                        <input type='hidden' name='id_user' value="{{Auth::user()->id}}" />
+                                        <input type='hidden' name='id_wisata' value="{{$wisata->id_wisata}}" />
+                                        <textarea name='comment' class='form-control' placeholder='Balas komentar' required></textarea>
+                                        <br>
+                                        <button type='submit' class='btn btn-info'><i class="far fa-comments"></i> Reply</button>
+                                    </form>
+                                </div>
+                            @endif
                             <br>
                         @endforeach
                     @else
