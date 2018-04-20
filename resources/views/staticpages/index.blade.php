@@ -15,6 +15,7 @@
                             <input type="search" name="search" class="form-control" placeholder="Cari wisata" required/>
                             <br>
                             <button type="submit" class="btn btn-success">Cari wisata</button>
+                            <a class="btn btn-primary" href="{{route('wisata.favorit')}}"><i class="fas fa-star"></i> Wisata favorit</a>
                         </form>
                     </div>
                 </div>

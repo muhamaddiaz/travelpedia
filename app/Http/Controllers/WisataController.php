@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Wisata;
 
 class WisataController extends Controller
 {
@@ -13,9 +14,14 @@ class WisataController extends Controller
         return view('staticpages/index');
     }
 
+    public function favorit(Request $request) {
+        $wisata_fav = DB::select("SELECT *, AVG(rate) AS rate FROM wisata INNER JOIN rating USING(id_wisata) GROUP BY id_wisata ORDER BY AVG(rate) DESC");
+        return view('wisata_favorit', ['wisata' => $wisata_fav]);
+    }
+
     public function wisata(Request $request, $id) {
         $id_wisata = $id;
-        $komentar = DB::select("SELECT * FROM komentar WHERE id_wisata=$id_wisata");
+        $komentar = DB::select("SELECT * FROM komentar WHERE id_wisata=?", [$id_wisata]);
         $wisata = DB::select("select * from wisata where id_wisata=(?) LIMIT 1", [$id_wisata]);
         $rate = DB::select("SELECT AVG(rate) AS rate FROM rating WHERE id_wisata=?", [$id]);
         $count_rate = DB::select("SELECT count(*) AS ct_rate FROM rating WHERE id_wisata=?", [$id]);

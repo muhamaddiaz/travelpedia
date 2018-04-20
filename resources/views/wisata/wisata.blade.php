@@ -3,19 +3,29 @@
 @section('title', 'Travel')
 
 @section('content')
-    <div class="wisata-bg" style="background-image: url({{$wisata->link_image}}), url({{asset('images/bromo.jpg')}}); background-size: cover"></div>
+    <div class="wisata-bg" style="background-image: url({{$wisata->link_image}}), url({{asset('images/hand_with_camera.jpg')}}); background-size: cover"></div>
     <div class="row">
         <div class="col-md-6" style="background-color: rgba(86, 61, 124, 0.8);">
-            <div class="wisata-ct1 text-white text-center">
+            <div class="wisata-ct1 text-white text-center" style="position: fixed; width: 50%;">
                 <h1 class="display-3" style="font-weight: 700">{{$wisata->nama_wisata}}</h1>
                 <p style="font-size: 2rem">{{$wisata->lokasi_wisata}}</p>
-                @if($rating->rate) 
-                    <p><i class="fas fa-star"></i> ( {{$rating->rate}} ) dari ( {{$count_rate->ct_rate}} ulasan)<p>
+                @if($rating->rate)
+                    <p> 
+                    @for($i = ($rating->rate - 1); $i > -1; $i-- )
+                        @if($i >= 0)
+                            <i class="fas fa-star"></i>
+                        @else
+                            <i class="fas fa-star-half"></i>
+                        @endif
+                    @endfor
+                    </p>
+                    <p>({{$rating->rate}} dari {{$count_rate->ct_rate}} ulasan)</p>
                 @else
-                    <p><i class="fas fa-star"></i> ( 0 ) Belum ada rating<p>
+                    <p><i class="fas fa-star"></i> Belum ada rating<p>
                 @endif
                 @if(Auth::user())
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ulasan">
+                    <br>
+                    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ulasan">
                         Beri Rating
                     </button>
                     @if($user_rate)
@@ -23,6 +33,8 @@
                     @else
                         <p>Anda belum memberikan rating </p>
                     @endif
+                @else
+                    <a class="btn btn-primary" href="{{route('login')}}">Beri Rating</a>
                 @endif
             </div>
         </div>
@@ -42,6 +54,7 @@
                                 <div class="card-footer">
                                     <p>Commented by - <?php echo $user[0]->name ?></p>
                                     @if(Auth::user())
+                                        <button class="btn btn-success"><i class="fas fa-thumbs-up"></i> <span class="badge badge-light badge-pill">12</span></button>
                                         @if(Auth::user()->id == $komen->id_user)
                                             <form action="{{route('wisata.hapusKomen')}}" method="post" style="display: inline-block">
                                                 <input type='hidden' name='_token' value="{{csrf_token()}}" />
@@ -64,6 +77,7 @@
                                         <div class="card-footer">
                                             <p>Replied by - <?php echo $rep_user[0]->name ?></p>
                                             @if(Auth::user())
+                                                <button class="btn btn-success"><i class="fas fa-thumbs-up"></i> <span class="badge badge-light badge-pill">12</span></button>
                                                 @if(Auth::user()->id == $rep->id_user)
                                                     <form action="{{route('wisata.hapusReply')}}" method="post" style="display: inline-block">
                                                         <input type='hidden' name='_token' value="{{csrf_token()}}" />
@@ -72,8 +86,20 @@
                                                         <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                                     </form>
                                                 @endif
+                                                <button data-toggle="collapse" data-target="#replytwo{{$rep->id_reply}}" class="btn btn-info"><i class="fas fa-reply"></i></button>
                                             @endif
                                         </div>
+                                    </div>
+                                    <div class="collapse ml-5" id="replytwo{{$rep->id_reply}}">
+                                        <br>
+                                        <form action="" method='post'>
+                                            <input type='hidden' name='_token' value="{{csrf_token()}}" />
+                                            <input type='hidden' name='id_user' value="{{Auth::user()->id}}" />
+                                            <input type='hidden' name='id_wisata' value="{{$wisata->id_wisata}}" />
+                                            <textarea name='comment' class='form-control' placeholder='Balas komentar' required></textarea>
+                                            <br>
+                                            <button type='submit' class='btn btn-info'><i class="far fa-comments"></i> Reply</button>
+                                        </form>
                                     </div>
                                 @endforeach
                             @endif

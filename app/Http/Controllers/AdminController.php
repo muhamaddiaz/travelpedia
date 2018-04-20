@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Wisata;
 
 
 class AdminController extends Controller
@@ -26,6 +27,17 @@ class AdminController extends Controller
             'hotel' => $hotel,
             'transport' => $transport,
             'users' => $user]);
+    }
+
+    public function showAllData(Request $request) {
+        $hotel = DB::select("SELECT * FROM hotel");
+        $transport = DB::select("SELECT * FROM transport");
+        $wisata = DB::select("SELECT * FROM wisata");
+        return view('staticpages/showAllData', [
+            'hotel' => $hotel, 
+            'transport' => $transport, 
+            'wisata' => $wisata
+        ]);
     }
 
     public function insertWisata(Request $request) {

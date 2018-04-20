@@ -12,7 +12,8 @@
                 <form action="{{route('cari.wisata')}}" method="get">
                     <input type="search" name="search" class="form-control" placeholder="Cari wisata" required/>
                     <br>
-                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Cari wisata</button>
+                    <button type="submit" class="btn btn-success mr-3"><i class="fas fa-search"></i> Cari wisata</button>
+                    <a class="btn btn-primary" href="{{route('wisata.favorit')}}"><i class="fas fa-star"></i> Wisata favorit</a>
                 </form>
             </div>
         </div>
@@ -20,7 +21,7 @@
 </div>
 <div class="container">
     <div class="search-ct">
-        <form action="{{route('search')}}" method="post">
+        <form action="{{route('search')}}" method="post" onsubmit="return dateRequestValidate()">
             <input type="hidden" name="_token" value="{{csrf_token()}}" />
             <div class="row">
                 <div class="col-md-6">
@@ -42,15 +43,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <label>Infant: </label>
-                    <input type="number" class="form-control" name="infant" placeholder="Untuk berapa orang ?" required/>
+                    <input type="number" class="form-control" min="1" name="infant" placeholder="Untuk berapa orang ?" required/>
                 </div>
                 <div class="col-md-4">
                     <label>Tanggal keberangkatan: </label>
-                    <input type="date" class="form-control" name="berangkat" required/>
+                    <input type="date" class="form-control" name="berangkat" id="berangkat" required/>
                 </div>
                 <div class="col-md-4">
                     <label>Tanggal pulang: </label>
-                    <input type="date" class="form-control" name="pulang" required/>
+                    <input type="date" class="form-control" name="pulang" id="pulang" required/>
                 </div>
             </div>
             <br>

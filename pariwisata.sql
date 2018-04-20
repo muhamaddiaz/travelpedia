@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2018 at 11:15 AM
+-- Generation Time: Apr 20, 2018 at 11:09 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -42,7 +42,10 @@ CREATE TABLE `hotel` (
 --
 
 INSERT INTO `hotel` (`id_hotel`, `nama_hotel`, `deskripsi_hotel`, `lokasi_hotel`, `link_image`, `kapasitas`) VALUES
-(1, 'Louis Kienne', 'Salah satu hotel mewah berbintang 4 \n                                  di semarang lokasi di strategis di \n                                  tengah kota', 'Semarang', 'https://bit.ly/2q3oQmx', 40);
+(1, 'Louis Kienne', 'Salah satu hotel mewah berbintang 4 \n                                  di semarang lokasi di strategis di \n                                  tengah kota', 'Semarang', 'https://bit.ly/2q3oQmx', 40),
+(2, 'Hotel Mawar', 'Hotel yang ada di bandung', 'Bandung', 'bit.ly', 20),
+(3, 'JW Marriot', 'Hotel yang berada di ibukota jakarta', 'Jakarta', 'bit.ly', 30),
+(4, 'Hotel Melati', 'Hotel yang berada di semarang', 'Semarang', 'bit.ly', 30);
 
 -- --------------------------------------------------------
 
@@ -62,7 +65,14 @@ CREATE TABLE `komentar` (
 --
 
 INSERT INTO `komentar` (`id_komentar`, `id_wisata`, `id_user`, `isi_komentar`) VALUES
-(5, 1, 3, 'barbar');
+(5, 1, 3, 'barbar'),
+(7, 1, 2, 'hayu lah'),
+(8, 1, 3, 'komen'),
+(9, 3, 2, 'Bagus nih'),
+(10, 3, 1, 'hai'),
+(11, 1, 1, 'Coba komen'),
+(12, 2, 2, 'hello'),
+(13, 4, 6, 'Lemur urang yeuh');
 
 -- --------------------------------------------------------
 
@@ -120,7 +130,15 @@ CREATE TABLE `rating` (
 --
 
 INSERT INTO `rating` (`id_rating`, `id_user`, `id_wisata`, `rate`) VALUES
-(1, 2, 1, 3);
+(1, 2, 1, 5),
+(2, 3, 1, 1),
+(3, 1, 3, 4),
+(4, 1, 1, 5),
+(5, 4, 1, 1),
+(6, 2, 3, 5),
+(7, 6, 4, 5),
+(8, 2, 4, 5),
+(9, 7, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -140,7 +158,15 @@ CREATE TABLE `reply_komentar` (
 --
 
 INSERT INTO `reply_komentar` (`id_reply`, `id_komentar`, `id_user`, `isi_komentar`) VALUES
-(10, 5, 3, 'keren');
+(13, 5, 2, 'skuylay'),
+(14, 7, 2, 'kamana boi'),
+(15, 5, 3, 'boi'),
+(16, 9, 2, 'iya nih'),
+(18, 8, 1, 'Coba ini'),
+(19, 7, 1, 'Liat'),
+(20, 5, 1, 'Ini'),
+(21, 11, 4, 'Balas komen'),
+(22, 13, 2, 'aslina, anjeun orang sukabumi ?');
 
 -- --------------------------------------------------------
 
@@ -162,7 +188,9 @@ CREATE TABLE `transport` (
 --
 
 INSERT INTO `transport` (`id_transport`, `nama_transport`, `jenis_transport`, `tujuan_transport`, `link_image`, `kapasitas`) VALUES
-(1, 'Garuda Indonesia', 'Pesawat', 'Semarang', 'https://bit.ly/2q2tUaB', 40);
+(1, 'Garuda Indonesia', 'Pesawat', 'Semarang', 'https://bit.ly/2q2tUaB', 40),
+(2, 'Lion Air', 'Pesawat', 'Bandung', 'bit.ly', 20),
+(3, 'Kereta Api', 'Kereta', 'Jakarta', 'bit.ly', 30);
 
 -- --------------------------------------------------------
 
@@ -186,9 +214,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `admin`, `created_at`, `updated_at`) VALUES
-(1, 'Muhamad Diaz', 'muhamaddiaz10@gmail.com', '$2y$10$FQI2uGGvggjdDZcMRgkoZOitBG3AOhF1D.ow0SwZVAvSmUwDy6Y/.', 'bozAqihogWazMkN3EsMWiyqmeJQHBhLgOpnZKZZsTtscLf3pP6nR6WIrM0RU', 1, NULL, NULL),
-(2, 'stepen', 'stepen@gmail.com', '$2y$10$uU/A9CFb9k05B1AmcHwLh.0F5QHfv/6.C2h9rg0ZwupGd.cA26Ag6', '4vjrB0KFMx0I6yRbc2RGK0GW46NIH37pGXGOliubxvRFEygxkbXbRUbJb4VX', 0, '2018-04-20 14:49:35', '2018-04-20 14:49:35'),
-(3, 'carlos', 'carlos@gmail.com', '$2y$10$4cMH1RPm/N6jVghldASbQu/R06JBTrxdQDIFP4wlB.jAF/yXdht5W', '2PZT87qmRI6DuL34OWpuxskZzv8jV0iBFHf1E1PeoEJWene1oEaKsVlSkMxw', 0, '2018-04-20 15:26:41', '2018-04-20 15:26:41');
+(1, 'Muhamad Diaz', 'muhamaddiaz10@gmail.com', '$2y$10$FQI2uGGvggjdDZcMRgkoZOitBG3AOhF1D.ow0SwZVAvSmUwDy6Y/.', 'por5Cvw7AmwLRtnvAvRGwUJE959Wf7CO61Ly2dYdCKGadqFWQOZyVAxpz6vD', 1, NULL, NULL),
+(2, 'stepen', 'stepen@gmail.com', '$2y$10$uU/A9CFb9k05B1AmcHwLh.0F5QHfv/6.C2h9rg0ZwupGd.cA26Ag6', '3yZpKgRTdFmbo2z5lrvnWscy9EkUar5X0eDEpuhipPrtE81QvWH81t7LaXTf', 0, '2018-04-20 14:49:35', '2018-04-20 14:49:35'),
+(3, 'carlos', 'carlos@gmail.com', '$2y$10$4cMH1RPm/N6jVghldASbQu/R06JBTrxdQDIFP4wlB.jAF/yXdht5W', 'pSY2tBCNMetiyM8XXdnziyzQkTSXPdMgRMTCiEWGsZ8IXlAM3xwomTE4KnsM', 0, '2018-04-20 15:26:41', '2018-04-20 15:26:41'),
+(4, 'Coba Rekruitasi', 'rek@ans.lab', '$2y$10$LPN4S5wz.iCKP7BeQiR9TuDD7AuVdIqptET42Pv4zZSs6IBrYkeMq', 'LTvV3ZnGQ8AiK2FTastUqDK7tLsNVKMiDIIe62mEcc9KpzwQDQ3uVZlK2Gkc', 0, '2018-04-20 21:28:27', '2018-04-20 21:28:27'),
+(5, 'asdf', 'asdf@gmail.com', '$2y$10$8pw4C9vKzGnPy2BXNVdb3uW0pbXXRV8DQiG7Wbu2wqZBT7Amcj2xm', 'hwtBTf3VCMIMVRIylgejOzrpagGz5QaTm9qSla0PKTTJofqQCtz88XvahDmi', 0, '2018-04-20 21:48:17', '2018-04-20 21:48:17'),
+(6, 'samsul', 'sams@gmail.com', '$2y$10$v17njaP5KQCMhmfVxdswoO3pL7fWLhjLt.TIqFnz7ZDlKQTRQ7EpG', '4z8pf35knDL8fQZfNkQ8teHwTxXPiAC9KLgJku0YkD2vp0v6kHcuuBCgTZqR', 0, '2018-04-21 00:10:20', '2018-04-21 00:10:20'),
+(7, '12345', '123223@gmail.com', '$2y$10$SuyHhQ/PpDQkvqJrgGzkyexzRjhkRAa8o7laUPYKG0Ho7fazGMn4y', '9mvZvi55cczNVTEF32nWd022P3nSTBzYQDRfZ5HBqYWaJRdfwe7JEELkBxsC', 0, '2018-04-21 01:12:39', '2018-04-21 01:12:39');
 
 -- --------------------------------------------------------
 
@@ -209,7 +241,37 @@ CREATE TABLE `wisata` (
 --
 
 INSERT INTO `wisata` (`id_wisata`, `nama_wisata`, `deskripsi_wisata`, `lokasi_wisata`, `link_image`) VALUES
-(1, 'Lawang Sewu', 'Salah satu tempat wisata di kota semarang \n                                   yang memiliki sejarah pada masa penjajahan \n                                   belanda dan jepang, ini adalah salah satu \n                                   tempat wisata yang unik karena terdapat \n                                   1000 pintu didalamnya makanya diberi nama \n                                   lawang sewu kalo ga percaya itung sendiri \n                                   - sumber orang semarang asli (hanip)', 'Semarang', 'https://bit.ly/2GyUqmj');
+(1, 'Lawang Sewu', 'Salah satu tempat wisata di kota semarang \n                                   yang memiliki sejarah pada masa penjajahan \n                                   belanda dan jepang, ini adalah salah satu \n                                   tempat wisata yang unik karena terdapat \n                                   1000 pintu didalamnya makanya diberi nama \n                                   lawang sewu kalo ga percaya itung sendiri \n                                   - sumber orang semarang asli (hanip)', 'Semarang', 'https://bit.ly/2GyUqmj'),
+(2, 'Alun alun Bandung', 'Alun alun di tengah kota bandung', 'Bandung', 'bit.ly'),
+(3, 'Monas', 'Monumen nasional yang berada di ibukota indonesia', 'Jakarta', 'bit.ly'),
+(4, 'Geopark Ciletuh', 'Salah satu geopark di indonesia yang diakui unesco', 'Sukabumi', 'bit.ly');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `wisata_favorit`
+-- (See below for the actual view)
+--
+CREATE TABLE `wisata_favorit` (
+`id_wisata` int(10) unsigned
+,`nama_wisata` text
+,`deskripsi_wisata` text
+,`lokasi_wisata` text
+,`link_image` text
+,`id_rating` int(10) unsigned
+,`id_user` int(11) unsigned
+,`rate` double
+,`rate_wisata` double
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `wisata_favorit`
+--
+DROP TABLE IF EXISTS `wisata_favorit`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wisata_favorit`  AS  select `wisata`.`id_wisata` AS `id_wisata`,`wisata`.`nama_wisata` AS `nama_wisata`,`wisata`.`deskripsi_wisata` AS `deskripsi_wisata`,`wisata`.`lokasi_wisata` AS `lokasi_wisata`,`wisata`.`link_image` AS `link_image`,`rating`.`id_rating` AS `id_rating`,`rating`.`id_user` AS `id_user`,`rating`.`rate` AS `rate`,avg(`rating`.`rate`) AS `rate_wisata` from (`wisata` join `rating` on((`wisata`.`id_wisata` = `rating`.`id_wisata`))) group by `wisata`.`id_wisata` order by avg(`rating`.`rate`) desc ;
 
 --
 -- Indexes for dumped tables
@@ -283,13 +345,13 @@ ALTER TABLE `wisata`
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id_hotel` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_hotel` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id_komentar` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_komentar` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -301,31 +363,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id_rating` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_rating` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `reply_komentar`
 --
 ALTER TABLE `reply_komentar`
-  MODIFY `id_reply` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_reply` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `transport`
 --
 ALTER TABLE `transport`
-  MODIFY `id_transport` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_transport` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `wisata`
 --
 ALTER TABLE `wisata`
-  MODIFY `id_wisata` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_wisata` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

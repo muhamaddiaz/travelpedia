@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title', "Pencarian untuk $ke")
+@section('title', "Menampilkan seluruh data")
 
 @section('content')
     <div class="container-fluid bg-bromo" style="padding: 0">
         <div class="faded-search text-white">
-            <br>
-            <h1 class="display-3" style="font-weight: 900">Destinasi {{$ke}}</h1>
-            <h6 style="font-weight: 600">Jangka waktu: {{$berangkat}} - {{$pulang}}, Untuk {{$infant}} Orang</h6>
+            <br><br>
+            <h1 class="display-3" style="font-weight: 900">Menampilkan Seluruh Data</h1>
         </div>
     </div>
     <br>
@@ -24,7 +23,7 @@
                 <a class="nav-link" data-toggle="pill" href="#menu2"><i class="fas fa-map-marker"></i> Wisata</a>
             </li>
         </ul>
-        
+      
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane fade show active container" id="home">
@@ -48,9 +47,6 @@
                                         <p class=card-text>{{$tp->jenis_transport}}</p>
                                         <p class=card-text>Bandung - {{$tp->tujuan_transport}}</p>
                                     </div>
-                                    <div class="card-footer">
-                                        <button class="btn btn-danger btn-block">Book</button>
-                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -72,9 +68,6 @@
                                     <div class='card-body'>
                                         <h2 class=card-title>{{$ht->nama_hotel}}</h2>
                                         <p class="card-text">{{$ht->lokasi_hotel}}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button class="btn btn-danger btn-block">Book</button>
                                     </div>
                                 </div>
                             </div>

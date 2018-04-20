@@ -126,3 +126,13 @@ function delete_validate() {
         return false;
     }
 }
+
+function dateRequestValidate() {
+    let x = new Date($('#berangkat').val());
+    let y = new Date($('#pulang').val());
+    if(y > x) {
+        return true;
+    }
+    alert("Tanggal tidak valid");
+    return false;
+}

@@ -120,6 +120,18 @@
                         <button class="btn btn-info" data-toggle='modal' data-target='#transportModal'>Tambah transport</button>
                     </div>
                 </div>
+                <br>
+                <div class="card bg-warning text-white">
+                    <div class="card-header">
+                        <h3 class="card-title" style='font-weight: 300'>Lihat semua data</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class='card-text'>Dengan menggunakan fitur ini anda akan dapat melihat seluruh data yang terdapat di database</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-warning text-white" href="{{route('admin.showAllData')}}">Lihat data</a>
+                    </div>
+                </div>
             </div>
         </div>
     <div id="wisataModal" class="modal fade" role="dialog">

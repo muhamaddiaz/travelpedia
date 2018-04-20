@@ -15,6 +15,7 @@ Route::get('/', ['uses' => 'WisataController@intro', 'middleware' => 'guest']);
 
 Auth::routes();
 
+Route::get('/wisata/favorit', ['uses' => 'WisataController@favorit', 'as' => 'wisata.favorit']);
 Route::get('/search-wisata', ['uses' => 'WisataController@cariWisata', 'as' => 'cari.wisata']);
 Route::get('/wisata/{id}', ['uses' => 'WisataController@wisata', 'as' => 'wisata']);
 Route::post('/wisata/{id}/rate', ['uses' => 'WisataController@rate', 'as' => 'rate.wisata']);
@@ -39,6 +40,8 @@ Route::post('/admin/{id}/deleteTransport', ['uses' => 'AdminController@deleteTra
 Route::post('/admin/{id}/updateTransport', ['uses' => 'AdminController@updateTransport', 'as' => 'admin.updateTransport']);
 Route::get('/admin/{id}/updateTransportView', ['uses' => 'AdminController@updateTransportView', 'as' => 'admin.updateTransportView']);
 Route::post('/admin/insertTransport', ['uses' => 'AdminController@insertTransport', 'as' => 'admin.insertTransport']);
+
+Route::get('/admin/showAllData', ['uses' => 'AdminController@showAllData', 'as' => 'admin.showAllData']);
 
 Route::post('/admin/{id}/deleteUser', ['uses' => 'AdminController@deleteUser', 'as' => 'admin.deleteUser']);
 Route::post('/admin/{id}/updateUser', ['uses' => 'AdminController@updateUser', 'as' => 'admin.updateUser']);

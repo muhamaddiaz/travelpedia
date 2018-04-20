@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
-@section('title', "Pencarian untuk $search")
+@section('title', "Wisata dengan rating tertinggi")
 
 @section('content')
     <div class="bg-bromo" style="padding: 0">
         <div class="faded-search text-white">
             <br><br>
-            <h1 class="display-3" style="font-weight: 900">Hasil untuk {{$search}}</h1>
-            @if($wisata_count->hitung)
-                <h3>Terdapat {{$wisata_count->hitung}} lokasi wisata di daerah {{$search}}</h3>
-            @endif
+            <h1 class="display-3" style="font-weight: 900">Wisata dengan rating tertinggi</h1>
         </div>
     </div>
     <br>
@@ -24,6 +21,20 @@
                             </object>
                             <div class='card-body'>       
                                 <h2 class=card-title>{{$ws->nama_wisata}}</h2>
+                                @if($ws->rate)
+                                    <p> 
+                                    @for($i = ($ws->rate - 1); $i > -1; $i-- )
+                                        @if($i >= 0)
+                                            <i class="fas fa-star"></i>
+                                        @else
+                                            <i class="fas fa-star-half"></i>
+                                        @endif
+                                    @endfor
+                                    </p>
+                                    <p>( {{$ws->rate}} )</p>
+                                @else
+                                    <p><i class="fas fa-star"></i> Belum ada rating<p>
+                                @endif
                                 <p class="card-text">{{$ws->lokasi_wisata}}</p>
                             </div>
                             <div class="card-footer">

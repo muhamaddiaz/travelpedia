@@ -20,6 +20,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/assets.css') }}" rel="stylesheet">
+
+    <!-- Javascript -->
+    <script src="{{ asset('js/app.js')}}"></script>
+    <script src="{{ asset('js/assets.js')}}"></script>
 </head>
 <body>
     <div id="app">
